@@ -21,7 +21,7 @@ public class JwtGenerador {
         Date expiracionToken = new Date(tiempoActual.getTime() + ConstantesSeguridad.JWT_EXPIRATION_TOKEN);
 
         //Linea para generar el token
-        String token = Jwts.builder() //Construimos un token JWT llamado token
+        final String token = Jwts.builder() //Construimos un token JWT llamado token
                 .setSubject(username) //Aca establecemos el nombre de usuario que está iniciando sesión
                 .setIssuedAt(new Date()) //Establecemos la fecha de emisión del token en el momento actual
                 .setExpiration(expiracionToken) //Establecemos la fecha de caducidad del token
@@ -52,5 +52,7 @@ public class JwtGenerador {
             throw new AuthenticationCredentialsNotFoundException("Jwt ha expirado o esta incorrecto");
         }
     }
+
+    
 }
 
