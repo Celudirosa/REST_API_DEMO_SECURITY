@@ -80,11 +80,7 @@ public class ProductoController {
         return responseEntity;
     }
 
-    /**
-     * Persiste un producto en la base de datos
-     * @throws IOException
-     * 
-     * */
+    // Persiste un producto en la base de datos @throws IOException
     // Guardar (Persistir), un producto, con su presentacion en la base de datos
     // Para probarlo con POSTMAN: Body -> form-data -> producto -> CONTENT TYPE ->
     // application/json
@@ -132,12 +128,12 @@ public class ProductoController {
                 // archivo que vamos a devolver.
 
             FileUploadResponse fileUploadResponse = FileUploadResponse
-                       .builder()
-                       .fileName(fileCode + "-" + fileName)
-                       .downloadURI("/productos/downloadFile/" 
-                                 + fileCode + "-" + fileName)
-                       .size(file.getSize())
-                       .build();
+                .builder()
+                .fileName(fileCode + "-" + fileName)
+                .downloadURI("/productos/downloadFile/" 
+                    + fileCode + "-" + fileName)
+                .size(file.getSize())
+                .build();
             
             responseAsMap.put("info de la imagen: ", fileUploadResponse);           
 
@@ -297,5 +293,6 @@ public class ProductoController {
         .header(HttpHeaders.CONTENT_DISPOSITION, headerValue)
         .body(resource);
 
-    }  
+    }
+
 }

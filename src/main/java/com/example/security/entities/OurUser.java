@@ -29,9 +29,9 @@ public class OurUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return List.of(new SimpleGrantedAuthority(role));
-   }
+    }
 
-     @Override
+    @Override
     public String getUsername() {
         return this.email;
     }
@@ -55,6 +55,5 @@ public class OurUser implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-    
 
 }

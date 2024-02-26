@@ -30,4 +30,5 @@ public class AuthController {
     public ResponseEntity<ReqResp> refreshToken(@RequestBody ReqResp refreshTokenRequest) {
         return ResponseEntity.ok(authService.refreshToken(refreshTokenRequest));
     }
+
 }

@@ -16,5 +16,7 @@ public class CorsConfig {
                 registry.addMapping("/**"); //Enable CORS for all endpoints
             }
         };
+
     }
+
 }

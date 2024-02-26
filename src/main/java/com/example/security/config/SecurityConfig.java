@@ -31,17 +31,17 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(AbstractHttpConfigurer::disable)
-                .cors(Customizer.withDefaults())
-                .authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll()
-                        .requestMatchers(HttpMethod.POST,"/productos/**").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/productos/**").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/productos/**").hasAuthority("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/productos/**").hasAnyAuthority("USER", "ADMIN")
-                        .anyRequest().authenticated())
-                .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider()).addFilterBefore(
-                        jwtAuthFilter, UsernamePasswordAuthenticationFilter.class
-                );
+            .cors(Customizer.withDefaults())
+            .authorizeHttpRequests(request -> request.requestMatchers("/auth/**").permitAll()
+                .requestMatchers(HttpMethod.POST,"/productos/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/productos/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/productos/**").hasAuthority("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/productos/**").hasAnyAuthority("USER", "ADMIN")
+                .anyRequest().authenticated())
+            .sessionManagement(manager -> manager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+            .authenticationProvider(authenticationProvider()).addFilterBefore(
+                jwtAuthFilter, UsernamePasswordAuthenticationFilter.class
+            );
         return httpSecurity.build();
     }
 
@@ -62,4 +62,5 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
+
 }

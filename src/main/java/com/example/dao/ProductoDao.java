@@ -14,7 +14,7 @@ import com.example.entities.Producto;
 @Repository
 public interface ProductoDao extends JpaRepository<Producto, Integer> {
 
- /**
+    /**
      * Vamos a necesitar tres metodos personalizados,
      * que traigan la presentacion en una sola consulta, que es mas eficiente,
      * que primero traer el producto y luego una subconsulta para traer la presentacion
@@ -31,7 +31,7 @@ public interface ProductoDao extends JpaRepository<Producto, Integer> {
      */
 
     @Query(value = "select p from Producto p left join fetch p.presentacion", 
-          countQuery = "select count(p) from Producto p left join p.presentacion") 
+        countQuery = "select count(p) from Producto p left join p.presentacion") 
     public Page<Producto> findAll(Pageable pageable);
 
     @Query(value = "select p from Producto p left join fetch p.presentacion")
@@ -40,5 +40,5 @@ public interface ProductoDao extends JpaRepository<Producto, Integer> {
 
     @Query(value = "select p from Producto p left join fetch p.presentacion where p.id = :id")
     public Producto findById(int id);
-    
+
 }
